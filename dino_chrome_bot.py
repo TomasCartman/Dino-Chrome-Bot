@@ -3,7 +3,9 @@ import time
 import pyautogui
 from PIL import ImageGrab
 
-x_position = 330
+# TODO 1. Stop the script if the player dies
+
+x_position = 360
 
 def capture_screen():
 	screen = ImageGrab.grab()
@@ -22,7 +24,11 @@ def detect_enemy(screen):
 def jump():
 	global x_position
 	pyautogui.press('up')
-	x_position += 0.5
+	print(time.process_time())
+	if time.process_time() < 30:
+		x_position += (time.process_time()/10)
+	else:
+		x_position += (time.process_time()/5)
 
 print('Starting in 3 seconds...')
 time.sleep(3)
